@@ -27,9 +27,12 @@
 
     <div style="width:100%; max-width: 760px; background: #fff; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 10px rgba(16, 185, 129, 0.2);">
 
-        <form action="{{ route('teachers.update', $teacher->id) }}" method="POST">
+        <!-- Success/Error Messages -->
+        <div id="formMessage" style="display: none; padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem;"></div>
+
+        <form id="editTeacherForm" onsubmit="return false;">
             @csrf
-            @method('PUT')
+            <input type="hidden" id="teacher_id" value="{{ $teacher->id }}">
 
             <!-- TEACHER INFORMATION SECTION -->
             <h3 style="color: #059669; font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #d1fae5; padding-bottom: 0.5rem;">
@@ -38,27 +41,32 @@
 
             <div style="margin-bottom: 1.5rem;">
                 <label style="display:block; color:#065f46; font-weight:600;">First Name *</label>
-                <input type="text" name="fname" value="{{ old('fname', $teacher->fname) }}" required style="width:100%; padding:0.75rem; border:2px solid #d1fae5; border-radius:8px;">
+                <input type="text" name="fname" id="fname" value="{{ old('fname', $teacher->fname) }}" required style="width:100%; padding:0.75rem; border:2px solid #d1fae5; border-radius:8px;">
+                <small class="error-message" style="color: #ef4444; display: none; margin-top: 0.25rem;"></small>
             </div>
 
             <div style="margin-bottom: 1.5rem;">
                 <label style="display:block; color:#065f46; font-weight:600;">Middle Name</label>
-                <input type="text" name="mname" value="{{ old('mname', $teacher->mname) }}" style="width:100%; padding:0.75rem; border:2px solid #d1fae5; border-radius:8px;" placeholder="Optional">
+                <input type="text" name="mname" id="mname" value="{{ old('mname', $teacher->mname) }}" style="width:100%; padding:0.75rem; border:2px solid #d1fae5; border-radius:8px;" placeholder="Optional">
+                <small class="error-message" style="color: #ef4444; display: none; margin-top: 0.25rem;"></small>
             </div>
 
             <div style="margin-bottom: 1.5rem;">
                 <label style="display:block; color:#065f46; font-weight:600;">Last Name *</label>
-                <input type="text" name="lname" value="{{ old('lname', $teacher->lname) }}" required style="width:100%; padding:0.75rem; border:2px solid #d1fae5; border-radius:8px;">
+                <input type="text" name="lname" id="lname" value="{{ old('lname', $teacher->lname) }}" required style="width:100%; padding:0.75rem; border:2px solid #d1fae5; border-radius:8px;">
+                <small class="error-message" style="color: #ef4444; display: none; margin-top: 0.25rem;"></small>
             </div>
 
             <div style="margin-bottom: 1.5rem;">
                 <label style="display:block; color:#065f46; font-weight:600;">Email *</label>
-                <input type="email" name="email" value="{{ old('email', $teacher->email) }}" required style="width:100%; padding:0.75rem; border:2px solid #d1fae5; border-radius:8px;">
+                <input type="email" name="email" id="email" value="{{ old('email', $teacher->email) }}" required style="width:100%; padding:0.75rem; border:2px solid #d1fae5; border-radius:8px;">
+                <small class="error-message" style="color: #ef4444; display: none; margin-top: 0.25rem;"></small>
             </div>
 
             <div style="margin-bottom: 1.5rem;">
                 <label style="display:block; color:#065f46; font-weight:600;">Contact Number *</label>
-                <input type="text" name="contact" value="{{ old('contact', $teacher->contact) }}" required style="width:100%; padding:0.75rem; border:2px solid #d1fae5; border-radius:8px;" placeholder="09XXXXXXXXX">
+                <input type="text" name="contact" id="contact" value="{{ old('contact', $teacher->contact) }}" required style="width:100%; padding:0.75rem; border:2px solid #d1fae5; border-radius:8px;" placeholder="09XXXXXXXXX">
+                <small class="error-message" style="color: #ef4444; display: none; margin-top: 0.25rem;"></small>
             </div>
 
             <div style="display:flex; gap:1rem; justify-content:center;">

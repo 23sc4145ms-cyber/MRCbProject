@@ -94,6 +94,11 @@
             </div>
             
             <div style="margin-bottom: 1.5rem;">
+                <label style="display: block; color: #ABC28B; font-weight: 600; margin-bottom: 0.5rem;">Email *</label>
+                <input type="email" id="edit_email" required style="width: 100%; padding: 0.75rem; border: 2px solid #e0e7d8; border-radius: 8px;">
+            </div>
+            
+            <div style="margin-bottom: 1.5rem;">
                 <label style="display: block; color: #ABC28B; font-weight: 600; margin-bottom: 0.5rem;">Contact *</label>
                 <input type="text" id="edit_contact" required style="width: 100%; padding: 0.75rem; border: 2px solid #e0e7d8; border-radius: 8px;">
             </div>
@@ -106,7 +111,7 @@
     </div>
 </div>
 
-<!-- Include Teachers AJAX Script -->
-<script src="{{ asset('js/teachers.js') }}"></script>
+<!-- Include App.js (contains all AJAX code) -->
+<!-- Already loaded in layout.blade.php -->
 
 @endsection

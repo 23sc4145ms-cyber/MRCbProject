@@ -20,26 +20,26 @@
     @endif
 
     <div style="max-width: 700px; background: #fff; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 6px rgba(236, 72, 153, 0.15);">
-        <form action="{{ route('courses.update', $course->id) }}" method="POST">
+        
+        <!-- Success/Error Messages -->
+        <div id="formMessage" style="display: none; padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem;"></div>
+
+        <form id="editDegreeForm" onsubmit="return false;">
             @csrf
-            @method('PUT')
+            <input type="hidden" id="degree_id" value="{{ $course->id }}">
 
             <!-- Degree Name -->
             <div style="margin-bottom: 1.5rem;">
                 <label for="name" style="display: block; color: #ABC28B; font-weight: 600; margin-bottom: 0.5rem;">Degree Name <span style="color: #112C01;">*</span></label>
                 <input type="text" name="name" id="name" placeholder="Enter degree name" value="{{ old('name', $course->name) }}" style="width: 100%; padding: 0.75rem; border: 2px solid #e0e7d8; border-radius: 6px; font-size: 1rem; background-color: #f9fafb; color: #333; transition: border-color 0.2s ease;" onchange="this.style.borderColor='#ABC28B';" onfocus="this.style.borderColor='#ABC28B';" onblur="this.style.borderColor='#e0e7d8';" required>
-                @error('name')
-                    <p style="color: #ef4444; font-size: 0.875rem; margin-top: 0.25rem;">{{ $message }}</p>
-                @enderror
+                <small class="error-message" style="color: #ef4444; display: none; margin-top: 0.25rem;"></small>
             </div>
 
             <!-- Degree Description -->
             <div style="margin-bottom: 2rem;">
                 <label for="description" style="display: block; color: #ABC28B; font-weight: 600; margin-bottom: 0.5rem;">Description <span style="color: #112C01;">*</span></label>
                 <textarea name="description" id="description" placeholder="Enter degree description" rows="6" style="width: 100%; padding: 0.75rem; border: 2px solid #e0e7d8; border-radius: 6px; font-size: 1rem; background-color: #f9fafb; color: #333; transition: border-color 0.2s ease; font-family: 'Segoe UI', sans-serif; resize: vertical;" onchange="this.style.borderColor='#ABC28B';" onfocus="this.style.borderColor='#ABC28B';" onblur="this.style.borderColor='#e0e7d8';" required>{{ old('description', $course->description) }}</textarea>
-                @error('description')
-                    <p style="color: #ef4444; font-size: 0.875rem; margin-top: 0.25rem;">{{ $message }}</p>
-                @enderror
+                <small class="error-message" style="color: #ef4444; display: none; margin-top: 0.25rem;"></small>
             </div>
 
             <!-- Buttons -->

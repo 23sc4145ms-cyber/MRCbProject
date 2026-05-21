@@ -96,7 +96,7 @@
     </div>
 </div>
 
-<!-- Include Degrees AJAX Script -->
-<script src="{{ asset('js/degrees.js') }}"></script>
+<!-- Include App.js (contains all AJAX code) -->
+<!-- Already loaded in layout.blade.php -->
 
 @endsection

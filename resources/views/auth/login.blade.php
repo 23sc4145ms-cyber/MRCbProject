@@ -275,6 +275,7 @@
         passwordField.setAttribute('autocomplete', 'new-password');
     });
 
+    
     // Clear on focus
     document.getElementById('email').addEventListener('focus', function() {
         this.value = '';

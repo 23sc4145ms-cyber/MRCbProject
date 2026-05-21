@@ -150,23 +150,22 @@
         </div>
     @endif
 
-    <form action="{{ route('courses.store') }}" method="POST" class="form-container">
+    <form id="addDegreeForm" class="form-container">
         @csrf
+
+        <!-- Success/Error Messages -->
+        <div id="formMessage" style="display: none; padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem;"></div>
 
         <div class="form-group">
             <label for="name">Degree Name <span class="required">*</span></label>
             <input type="text" name="name" id="name" placeholder="Enter degree name" value="{{ old('name') }}" required>
-            @error('name')
-                <small style="color: #ef4444; display: block; margin-top: 0.25rem;">{{ $message }}</small>
-            @enderror
+            <small class="error-message" style="color: #ef4444; display: none; margin-top: 0.25rem;"></small>
         </div>
 
         <div class="form-group">
             <label for="description">Description <span class="required">*</span></label>
             <textarea name="description" id="description" placeholder="Enter degree description" rows="6" required style="font-family: 'Segoe UI', sans-serif; resize: vertical;">{{ old('description') }}</textarea>
-            @error('description')
-                <small style="color: #ef4444; display: block; margin-top: 0.25rem;">{{ $message }}</small>
-            @enderror
+            <small class="error-message" style="color: #ef4444; display: none; margin-top: 0.25rem;"></small>
         </div>
 
         <div class="button-group">

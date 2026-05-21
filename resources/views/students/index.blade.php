@@ -116,8 +116,6 @@
     </div>
 </div>
 
-<!-- Include jQuery (already in layout) -->
-<!-- Include Students AJAX Script -->
-<script src="{{ asset('js/students.js') }}"></script>
+
 
 @endsection

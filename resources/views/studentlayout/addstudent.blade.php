@@ -179,68 +179,57 @@
     </div>
     @endif
 
-    <form action="{{ route('students.store') }}" method="POST" class="form-container">
+    <form id="addStudentForm" class="form-container">
         @csrf
+        
+        <!-- Success/Error Messages -->
+        <div id="formMessage" style="display: none; padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem;"></div>
         
         <div class="form-group">
             <label for="fname">First Name <span class="required">*</span></label>
-            <input type="text" name="fname" id="fname" placeholder="Enter first name" value="{{ old('fname') }}" required>
-            @error('fname')
-                <small style="color: #ef4444; display: block; margin-top: 0.25rem;">{{ $message }}</small>
-            @enderror
+            <input type="text" name="fname" id="fname" placeholder="Enter first name" required>
+            <small class="error-message" style="color: #ef4444; display: none; margin-top: 0.25rem;"></small>
         </div>
 
         <div class="form-group">
             <label for="mname">Middle Name</label>
-            <input type="text" name="mname" id="mname" placeholder="Enter middle name (optional)" value="{{ old('mname') }}">
-            @error('mname')
-                <small style="color: #ef4444; display: block; margin-top: 0.25rem;">{{ $message }}</small>
-            @enderror
+            <input type="text" name="mname" id="mname" placeholder="Enter middle name (optional)">
+            <small class="error-message" style="color: #ef4444; display: none; margin-top: 0.25rem;"></small>
         </div>
 
         <div class="form-group">
             <label for="lname">Last Name <span class="required">*</span></label>
-            <input type="text" name="lname" id="lname" placeholder="Enter last name" value="{{ old('lname') }}" required>
-            @error('lname')
-                <small style="color: #ef4444; display: block; margin-top: 0.25rem;">{{ $message }}</small>
-            @enderror
+            <input type="text" name="lname" id="lname" placeholder="Enter last name" required>
+            <small class="error-message" style="color: #ef4444; display: none; margin-top: 0.25rem;"></small>
         </div>
 
         <div class="form-group">
             <label for="username">Username <span class="required">*</span></label>
-            <input type="text" name="username" id="username" placeholder="Enter username" value="{{ old('username') }}" required>
-            @error('username')
-                <small style="color: #ef4444; display: block; margin-top: 0.25rem;">{{ $message }}</small>
-            @enderror
+            <input type="text" name="username" id="username" placeholder="Enter username" required>
+            <small class="error-message" style="color: #ef4444; display: none; margin-top: 0.25rem;"></small>
         </div>
 
         <div class="form-group">
             <label for="email">Email <span class="required">*</span></label>
-            <input type="email" name="email" id="email" placeholder="Enter email address" value="{{ old('email') }}" required>
-            @error('email')
-                <small style="color: #ef4444; display: block; margin-top: 0.25rem;">{{ $message }}</small>
-            @enderror
+            <input type="email" name="email" id="email" placeholder="Enter email address" required>
+            <small class="error-message" style="color: #ef4444; display: none; margin-top: 0.25rem;"></small>
         </div>
 
         <div class="form-group">
             <label for="contact">Contact <span class="required">*</span></label>
-            <input type="text" name="contact" id="contact" placeholder="Enter contact number" value="{{ old('contact') }}" required>
-            @error('contact')
-                <small style="color: #ef4444; display: block; margin-top: 0.25rem;">{{ $message }}</small>
-            @enderror
+            <input type="text" name="contact" id="contact" placeholder="Enter contact number" required>
+            <small class="error-message" style="color: #ef4444; display: none; margin-top: 0.25rem;"></small>
         </div>
 
         <div class="form-group">
             <label for="course_id">Degree <span class="required">*</span></label>
             <select name="course_id" id="course_id" required>
-                <option value="" disabled {{ old('course_id') ? '' : 'selected' }}>Select a degree</option>
+                <option value="" disabled selected>Select a degree</option>
                 @foreach($courses as $course)
-                    <option value="{{ $course->id }}" {{ old('course_id') == $course->id ? 'selected' : '' }}>{{ $course->name }}</option>
+                    <option value="{{ $course->id }}">{{ $course->name }}</option>
                 @endforeach
             </select>
-            @error('course_id')
-                <small style="color: #ef4444; display: block; margin-top: 0.25rem;">{{ $message }}</small>
-            @enderror
+            <small class="error-message" style="color: #ef4444; display: none; margin-top: 0.25rem;"></small>
         </div>
 
         <div class="button-group">
@@ -250,19 +239,6 @@
     </form>
 </div>
 
-<script>
-    function togglePassword(fieldId) {
-        const field = document.getElementById(fieldId);
-        const icon = event.target;
-        
-        if (field.type === 'password') {
-            field.type = 'text';
-            icon.textContent = '🙈';
-        } else {
-            field.type = 'password';
-            icon.textContent = '👁️';
-        }
-    }
-</script>
+<!-- All AJAX code is now in app.js -->
 
 @endsection

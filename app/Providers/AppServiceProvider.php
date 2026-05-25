@@ -25,8 +25,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         if (env('APP_ENV') === 'production') {
-            // Trust all proxies for Railway deployment
-            \Illuminate\Http\Request::setTrustedProxies(['*'], \Illuminate\Http\Request::HEADER_X_FORWARDED_ALL);
+            // Force HTTPS in production (Railway handles proxy trust via TrustProxies middleware)
             URL::forceScheme('https');
         }
         Schema::defaultStringLength(191);

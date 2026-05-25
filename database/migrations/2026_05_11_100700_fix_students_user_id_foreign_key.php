@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
 
@@ -16,13 +15,7 @@ return new class extends Migration
             return;
         }
 
-        Schema::table('students', function (Blueprint $table) {
-            try {
-                $table->dropForeign(['user_id']);
-            } catch (\Throwable $e) {
-                // The legacy foreign key may already be missing.
-            }
-        });
+        $this->dropForeignKeyIfExists('students', 'students_user_id_foreign');
 
         if (! Schema::hasTable('user_accounts')) {
             return;
@@ -46,13 +39,7 @@ return new class extends Migration
             return;
         }
 
-        Schema::table('students', function (Blueprint $table) {
-            try {
-                $table->dropForeign(['user_id']);
-            } catch (\Throwable $e) {
-                // Ignore missing foreign keys during rollback.
-            }
-        });
+        $this->dropForeignKeyIfExists('students', 'students_user_id_foreign');
 
         if (! Schema::hasTable('users')) {
             return;
@@ -65,5 +52,23 @@ return new class extends Migration
         } catch (\Throwable $e) {
             // Ignore if the legacy foreign key cannot be recreated.
         }
+    }
+
+    private function dropForeignKeyIfExists(string $table, string $foreignKey): void
+    {
+        $databaseName = DB::getDatabaseName();
+
+        $constraintExists = DB::table('information_schema.TABLE_CONSTRAINTS')
+            ->where('CONSTRAINT_SCHEMA', $databaseName)
+            ->where('TABLE_NAME', $table)
+            ->where('CONSTRAINT_NAME', $foreignKey)
+            ->where('CONSTRAINT_TYPE', 'FOREIGN KEY')
+            ->exists();
+
+        if (! $constraintExists) {
+            return;
+        }
+
+        DB::statement("ALTER TABLE `{$table}` DROP FOREIGN KEY `{$foreignKey}`");
     }
 };

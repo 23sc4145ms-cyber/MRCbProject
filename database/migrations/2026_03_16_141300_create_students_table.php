@@ -11,14 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
+        if (Schema::hasTable('students')) {
+            return;
+        }
+
         Schema::create('students', function (Blueprint $table) {
             $table->id();
             $table->string('fname');
             $table->string('mname')->nullable();
             $table->string('lname');
             $table->string('contact');
-            $table->foreignId('degree_id')->nullable()->constrained('degrees')->onDelete('cascade');
-            $table->foreignId('user_id')->constrained('user_accounts')->onDelete('cascade');
+            $table->foreignId('degree_id')->nullable()->constrained('degrees')->nullOnDelete();
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
         });
     }

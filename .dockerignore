@@ -1,0 +1,16 @@
+.git
+.gitignore
+node_modules
+npm-debug.log
+.DS_Store
+.env
+.env.*.php
+.cache
+.rr.yaml
+storage/logs
+vendor
+.idea
+*.sublime-project
+*.sublime-workspace
+.env.local
+.env.*.local

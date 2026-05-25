@@ -107,7 +107,7 @@ try {
     if ($students->count() > 0) {
         echo "✅ Student Dashboard is ready to use!\n\n";
         echo "🎯 Test Login:\n";
-        echo "   URL: http://127.0.0.1:8000/login\n";
+        echo "   URL: https://127.0.0.1:8000/login\n";
         echo "   Email: {$students->first()->user->email}\n";
         echo "   Password: student1234\n\n";
         echo "📋 Dashboard Features:\n";
@@ -117,7 +117,7 @@ try {
         echo "   4. Change Password - Update password\n";
     } else {
         echo "⚠️  Please add students first:\n";
-        echo "   Go to: http://127.0.0.1:8000/students/create\n";
+        echo "   Go to: https://127.0.0.1:8000/students/create\n";
     }
     
 } catch (\Exception $e) {

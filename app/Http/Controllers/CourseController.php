@@ -38,8 +38,9 @@ class CourseController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
+            'code' => ['required', 'string', 'max:20', 'unique:courses,code'],
             'name' => ['required', 'string', 'max:255'],
-            'description' => ['required', 'string'],
+            'units' => ['required', 'integer', 'min:1', 'max:6'],
         ]);
 
         Course::create($validated);
@@ -79,8 +80,9 @@ class CourseController extends Controller
     public function update(Request $request, string $id)
     {
         $validated = $request->validate([
+            'code' => ['required', 'string', 'max:20', 'unique:courses,code,'.$id],
             'name' => ['required', 'string', 'max:255'],
-            'description' => ['required', 'string'],
+            'units' => ['required', 'integer', 'min:1', 'max:6'],
         ]);
 
         $course = Course::findOrFail($id);
@@ -90,7 +92,7 @@ class CourseController extends Controller
         if (request()->ajax()) {
             return response()->json([
                 'success' => true,
-                'message' => 'Degree updated successfully.',
+                'message' => 'Course updated successfully.',
                 'course' => $course
             ]);
         }

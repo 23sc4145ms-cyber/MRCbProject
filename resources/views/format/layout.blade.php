@@ -198,14 +198,18 @@
                     <a href="{{ route('dashboard') }}" @class(['active' => request()->is('dashboard')])>DASHBOARD</a>
                     <a href="{{ route('students.index') }}" @class(['active' => request()->is('students*')])>STUDENTS</a>
                     <a href="{{ route('teachers.index') }}" @class(['active' => request()->is('teachers*')])>TEACHERS</a>
-                    <a href="{{ route('courses.index') }}" @class(['active' => request()->is('courses*')])>DEGREE</a>
+                    <a href="{{ route('degrees.index') }}" @class(['active' => request()->is('degrees*')])>DEGREE</a>
+                    <a href="{{ route('courses.index') }}" @class(['active' => request()->is('courses*')])>COURSES</a>
+                    <a href="{{ route('course_students.index') }}" @class(['active' => request()->is('course_students*')])>ENROLLMENTS</a>
                     <a href="{{ route('posts.index') }}" @class(['active' => request()->is('posts*')])>POSTS</a>
                     <a href="{{ route('profiles.index') }}" @class(['active' => request()->is('profiles*')])>PROFILES</a>
                 @elseif(session('user_role') === 'teacher')
                     <a href="{{ route('dashboard') }}" @class(['active' => request()->is('dashboard')])>DASHBOARD</a>
                     <a href="{{ route('students.index') }}" @class(['active' => request()->is('students*')])>STUDENTS</a>
                     <a href="{{ route('teachers.index') }}" @class(['active' => request()->is('teachers*')])>TEACHERS</a>
-                    <a href="{{ route('courses.index') }}" @class(['active' => request()->is('courses*')])>DEGREE</a>
+                    <a href="{{ route('degrees.index') }}" @class(['active' => request()->is('degrees*')])>DEGREE</a>
+                    <a href="{{ route('courses.index') }}" @class(['active' => request()->is('courses*')])>COURSES</a>
+                    <a href="{{ route('course_students.index') }}" @class(['active' => request()->is('course_students*')])>ENROLLMENTS</a>
                     <a href="{{ route('posts.index') }}" @class(['active' => request()->is('posts*')])>POSTS</a>
                     <a href="{{ route('profiles.index') }}" @class(['active' => request()->is('profiles*')])>PROFILES</a>
                     <a href="{{ route('password.change.form') }}" @class(['active' => request()->is('user-page')])>CHANGE PASSWORD</a>

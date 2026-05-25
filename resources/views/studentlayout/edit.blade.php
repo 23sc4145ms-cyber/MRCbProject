@@ -75,15 +75,27 @@
             <small class="error-message" style="color: #ef4444; display: none; margin-top: 0.25rem;"></small>
         </div>
 
-        <!-- Course -->
-        <div style="margin-bottom: 2rem;">
+        <!-- Degree -->
+        <div style="margin-bottom: 1.5rem;">
             <label for="degree" style="display: block; color: #ABC28B; font-weight: 600; margin-bottom: 0.5rem;">Degree <span style="color: #ef4444;">*</span></label>
             <select name="degree_id" id="degree" required style="width: 100%; padding: 0.75rem; border: 2px solid #e0e7d8; border-radius: 8px; font-size: 1rem; transition: border-color 0.2s ease;" onfocus="this.style.borderColor='#ABC28B';" onblur="this.style.borderColor='#e0e7d8';">
                 <option value="" disabled>Select a degree</option>
-                @foreach($courses as $course)
-                    <option value="{{ $course->id }}" {{ $student->course_id == $course->id ? 'selected' : '' }}>{{ $course->name }}</option>
+                @foreach($degrees as $degree)
+                    <option value="{{ $degree->id }}" {{ $student->course_id == $degree->id ? 'selected' : '' }}>{{ $degree->name }}</option>
                 @endforeach
             </select>
+            <small class="error-message" style="color: #ef4444; display: none; margin-top: 0.25rem;"></small>
+        </div>
+
+        <!-- Courses (Multi-select) -->
+        <div style="margin-bottom: 2rem;">
+            <label for="courses" style="display: block; color: #ABC28B; font-weight: 600; margin-bottom: 0.5rem;">Courses (Subjects)</label>
+            <select name="courses[]" id="courses" multiple style="width: 100%; padding: 0.75rem; border: 2px solid #e0e7d8; border-radius: 8px; font-size: 1rem; transition: border-color 0.2s ease; min-height: 120px;" onfocus="this.style.borderColor='#ABC28B';" onblur="this.style.borderColor='#e0e7d8';">
+                @foreach($courses as $course)
+                    <option value="{{ $course->id }}" {{ $student->courses->contains($course->id) ? 'selected' : '' }}>{{ $course->code }} - {{ $course->name }}</option>
+                @endforeach
+            </select>
+            <small style="color: #677C56; font-size: 0.875rem; margin-top: 0.25rem; display: block;">Hold Ctrl (Windows) or Cmd (Mac) to select multiple courses</small>
             <small class="error-message" style="color: #ef4444; display: none; margin-top: 0.25rem;"></small>
         </div>
 

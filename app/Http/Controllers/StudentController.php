@@ -15,7 +15,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $students = Student::with(['course', 'user'])->get();
+        $students = Student::with(['degree', 'user'])->get();
     
         if (request()->wantsJson() || request()->ajax()) {
             return response()->json([
@@ -31,8 +31,9 @@ class StudentController extends Controller
      */
     public function create()
     {
+        $degrees = \App\Models\Degree::all();
         $courses = \App\Models\Course::all();
-        return view('studentlayout.addstudent', ['courses' => $courses]);
+        return view('studentlayout.addstudent', ['degrees' => $degrees, 'courses' => $courses]);
     }
 
     /**
@@ -122,7 +123,7 @@ class StudentController extends Controller
             return response()->json([
                 'success' => true,
                 'message' => 'Student added successfully.',
-                'student' => $student->load(['course', 'user'])
+                'student' => $student->load(['degree', 'user'])
             ]);
         }
         
@@ -134,7 +135,7 @@ class StudentController extends Controller
      */
     public function show(string $id)
     {
-        $student = Student::with(['course', 'user'])->find($id);
+        $student = Student::with(['degree', 'user'])->find($id);
         
         if (!$student) {
             if (request()->ajax()) {
@@ -158,8 +159,12 @@ class StudentController extends Controller
     public function edit(string $id)
     {
         $student = Student::find($id);
+        $degrees = \App\Models\Degree::all();
         $courses = \App\Models\Course::all();
-        return view('studentlayout.edit')->with('student', $student)->with('courses', $courses);
+        return view('studentlayout.edit')
+            ->with('student', $student)
+            ->with('degrees', $degrees)
+            ->with('courses', $courses);
     }
 
     /**
@@ -238,13 +243,18 @@ class StudentController extends Controller
         
         $student->update($updateData);
 
+        // Sync courses (many-to-many relationship)
+        if ($request->has('courses')) {
+            $student->courses()->sync($request->courses);
+        }
+
         $msg = "Student updated successfully!";
 
         
         if ($request->ajax() || $request->wantsJson()) {
             return response()->json([
                 'message' => $msg,
-                'student' => $student->load(['course', 'user'])
+                'student' => $student->load(['degree', 'user'])
             ]);
         }
 

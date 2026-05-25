@@ -1,6 +1,6 @@
 @extends('format.layout')
 
-@section('title', 'Create Degree')
+@section('title', 'Create Course')
 
 @section('content')
 <style>
@@ -135,8 +135,8 @@
 
 <div class="center-wrapper">
     <div class="page-header">
-        <h1>Create New Degree</h1>
-        <p>Fill out the form below to add a new degree to the system</p>
+        <h1>Create New Course</h1>
+        <p>Fill out the form below to add a new course to the system</p>
     </div>
 
     @if ($errors->any())
@@ -150,26 +150,29 @@
         </div>
     @endif
 
-    <form id="addDegreeForm" class="form-container">
+    <form action="{{ route('courses.store') }}" method="POST" class="form-container">
         @csrf
 
-        <!-- Success/Error Messages -->
-        <div id="formMessage" style="display: none; padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem;"></div>
-
         <div class="form-group">
-            <label for="name">Degree Name <span class="required">*</span></label>
-            <input type="text" name="name" id="name" placeholder="Enter degree name" value="{{ old('name') }}" required>
+            <label for="code">Course Code <span class="required">*</span></label>
+            <input type="text" name="code" id="code" placeholder="e.g., ELEC1, MATH101" value="{{ old('code') }}" required>
             <small class="error-message" style="color: #ef4444; display: none; margin-top: 0.25rem;"></small>
         </div>
 
         <div class="form-group">
-            <label for="description">Description <span class="required">*</span></label>
-            <textarea name="description" id="description" placeholder="Enter degree description" rows="6" required style="font-family: 'Segoe UI', sans-serif; resize: vertical;">{{ old('description') }}</textarea>
+            <label for="name">Course Name <span class="required">*</span></label>
+            <input type="text" name="name" id="name" placeholder="e.g., Electronics 1, Mathematics 101" value="{{ old('name') }}" required>
+            <small class="error-message" style="color: #ef4444; display: none; margin-top: 0.25rem;"></small>
+        </div>
+
+        <div class="form-group">
+            <label for="units">Units <span class="required">*</span></label>
+            <input type="number" name="units" id="units" placeholder="e.g., 3" value="{{ old('units', 3) }}" min="1" max="6" required>
             <small class="error-message" style="color: #ef4444; display: none; margin-top: 0.25rem;"></small>
         </div>
 
         <div class="button-group">
-            <button type="submit" class="btn-submit">Create Degree</button>
+            <button type="submit" class="btn-submit">Create Course</button>
             <a href="{{ route('courses.index') }}" class="btn-cancel">Cancel</a>
         </div>
     </form>

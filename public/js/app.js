@@ -462,19 +462,19 @@ $(document).ready(function() {
         let html = '';
         
         if (degrees.length === 0) {
-            html = '<tr><td colspan="4" style="padding: 2rem; text-align: center; color: #999;">No degrees available. <a href="/courses/create" style="color: #ABC28B; text-decoration: none; font-weight: 600;">Create one</a></td></tr>';
+            html = '<tr><td colspan="5" style="padding: 2rem; text-align: center; color: #999;">No courses available. <a href="/courses/create" style="color: #ABC28B; text-decoration: none; font-weight: 600;">Create one</a></td></tr>';
         } else {
             degrees.forEach(function(degree, index) {
                 const bgColor = index % 2 === 0 ? '#fff' : '#f0f5eb';
-                const description = degree.description.length > 50 ? degree.description.substring(0, 50) + '...' : degree.description;
                 
                 html += `
                     <tr style="border-bottom: 1px solid #e0e7d8; background-color: ${bgColor};" 
                         onmouseover="this.style.backgroundColor='#f0f5eb';" 
                         onmouseout="this.style.backgroundColor='${bgColor}';">
                         <td style="padding: 1rem; color: #677C56; font-weight: 600;">${index + 1}</td>
-                        <td style="padding: 1rem; color: #333; font-weight: 600;">${degree.name}</td>
-                        <td style="padding: 1rem; color: #666;">${description}</td>
+                        <td style="padding: 1rem; color: #333; font-weight: 600;">${degree.code}</td>
+                        <td style="padding: 1rem; color: #333;">${degree.name}</td>
+                        <td style="padding: 1rem; color: #666;">${degree.units}</td>
                         <td style="padding: 1rem; text-align: center;">
                             <button onclick="viewDegree(${degree.id})" style="padding: 0.5rem 1rem; background: linear-gradient(135deg, #ABC28B, #90A854); color: #fff; border: none; border-radius: 6px; cursor: pointer; margin-right: 0.5rem; font-weight: 600;" title="View">
                                 👁️ View
@@ -820,19 +820,23 @@ function viewDegree(id) {
         let html = `
             <div style="display: grid; gap: 1.5rem;">
                 <div>
-                    <label style="display: block; color: #90A854; font-weight: 600; margin-bottom: 0.5rem;">Degree Name</label>
-                    <p style="margin: 0; color: #333; font-size: 1.125rem; font-weight: 600;">${degree.name}</p>
+                    <label style="display: block; color: #90A854; font-weight: 600; margin-bottom: 0.5rem;">Course Code</label>
+                    <p style="margin: 0; color: #333; font-size: 1.125rem; font-weight: 600;">${degree.code}</p>
                 </div>
                 <div>
-                    <label style="display: block; color: #90A854; font-weight: 600; margin-bottom: 0.5rem;">Description</label>
-                    <p style="margin: 0; color: #333; line-height: 1.6;">${degree.description}</p>
+                    <label style="display: block; color: #90A854; font-weight: 600; margin-bottom: 0.5rem;">Course Name</label>
+                    <p style="margin: 0; color: #333; line-height: 1.6;">${degree.name}</p>
+                </div>
+                <div>
+                    <label style="display: block; color: #90A854; font-weight: 600; margin-bottom: 0.5rem;">Units</label>
+                    <p style="margin: 0; color: #333;">${degree.units}</p>
                 </div>
                 <div>
                     <label style="display: block; color: #90A854; font-weight: 600; margin-bottom: 0.5rem;">Created Date</label>
                     <p style="margin: 0; color: #333;">${createdDate}</p>
                 </div>
                 <div>
-                    <label style="display: block; color: #90A854; font-weight: 600; margin-bottom: 0.5rem;">Degree ID</label>
+                    <label style="display: block; color: #90A854; font-weight: 600; margin-bottom: 0.5rem;">Course ID</label>
                     <p style="margin: 0; color: #333;">${degree.id}</p>
                 </div>
             </div>
@@ -848,8 +852,9 @@ function editDegree(id) {
         const degree = response.course;
         
         $('#edit_id').val(degree.id);
+        $('#edit_code').val(degree.code);
         $('#edit_name').val(degree.name);
-        $('#edit_description').val(degree.description);
+        $('#edit_units').val(degree.units);
         
         $('#editModal').css('display', 'flex');
     });
@@ -862,8 +867,9 @@ $(document).on('submit', '#editDegreeForm', function(e) {
     const degreeId = $('#edit_id').val();
     const formData = {
         _method: 'PUT',
+        code: $('#edit_code').val(),
         name: $('#edit_name').val(),
-        description: $('#edit_description').val()
+        units: $('#edit_units').val()
     };
     
     $.ajax({
@@ -871,7 +877,7 @@ $(document).on('submit', '#editDegreeForm', function(e) {
         type: "POST",
         data: formData,
         success: function(response) {
-            showCenteredAlert('Degree updated successfully!', 'success');
+            showCenteredAlert('Course updated successfully!', 'success');
             closeEditModal();
             if (typeof loadDegrees === 'function') loadDegrees();
         },
@@ -884,7 +890,7 @@ $(document).on('submit', '#editDegreeForm', function(e) {
                 }
                 showCenteredAlert(errorMsg, 'error');
             } else {
-                showCenteredAlert('Failed to update degree. Error code: ' + xhr.status, 'error');
+                showCenteredAlert('Failed to update course. Error code: ' + xhr.status, 'error');
             }
         }
     });
@@ -901,12 +907,12 @@ $('#confirmDeleteBtn').click(function() {
             url: "/courses/" + window.degreeToDelete,
             type: "DELETE",
             success: function(response) {
-                showAlert('Degree deleted successfully!', 'success');
+                showAlert('Course deleted successfully!', 'success');
                 closeDeleteModal();
                 if (typeof loadDegrees === 'function') loadDegrees();
             },
             error: function(xhr) {
-                showAlert('Error deleting degree', 'error');
+                showAlert('Error deleting course', 'error');
                 closeDeleteModal();
             }
         });

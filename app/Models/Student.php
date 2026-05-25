@@ -14,20 +14,21 @@ class Student extends Model
         'mname',
         'lname',
         'contact',
-        'course_id',
+        'degree_id',
         'user_id',
         'password',
         'email',
     ];
 
-    public function course()
+    public function degree()
     {
-        return $this->belongsTo(Course::class);
+        return $this->belongsTo(Degree::class, 'degree_id');
     }
 
     public function courses()
     {
-        return $this->belongsToMany(Course::class, 'course_students', 'student_id', 'course_id');
+        return $this->belongsToMany(Course::class, 'course_student', 'student_id', 'course_id')
+                    ->withTimestamps();
     }
 
     public function user()

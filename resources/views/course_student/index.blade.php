@@ -22,9 +22,8 @@
             <thead>
                 <tr style="background: #f3e8ff; border-bottom: 2px solid #ec4899;">
                     <th style="padding: 1rem; text-align: left; color: #ec4899; font-weight: 600;">#</th>
-                    <th style="padding: 1rem; text-align: left; color: #ec4899; font-weight: 600;">Course</th>
-                    <th style="padding: 1rem; text-align: left; color: #ec4899; font-weight: 600;">Student</th>
-                    <th style="padding: 1rem; text-align: left; color: #ec4899; font-weight: 600;">Enrollment Date</th>
+                    <th style="padding: 1rem; text-align: left; color: #ec4899; font-weight: 600;">Student Name</th>
+                    <th style="padding: 1rem; text-align: left; color: #ec4899; font-weight: 600;">Course Code</th>
                     <th style="padding: 1rem; text-align: center; color: #ec4899; font-weight: 600;">Actions</th>
                 </tr>
             </thead>
@@ -33,13 +32,10 @@
                     <tr style="border-bottom: 1px solid #e5e7eb; transition: background-color 0.2s ease;" onmouseover="this.style.backgroundColor='#fdf2f8';" onmouseout="this.style.backgroundColor='transparent';">
                         <td style="padding: 1rem; color: #333;">{{ $loop->iteration }}</td>
                         <td style="padding: 1rem; color: #333;">
-                            <span style="font-weight: 600;">{{ $courseStudent->course->name ?? 'N/A' }}</span>
+                            <span style="font-weight: 600;">{{ $courseStudent->student->fname ?? 'N/A' }} {{ $courseStudent->student->lname ?? '' }}</span>
                         </td>
                         <td style="padding: 1rem; color: #333;">
-                            {{ $courseStudent->student->fname ?? 'N/A' }} {{ $courseStudent->student->lname ?? '' }}
-                        </td>
-                        <td style="padding: 1rem; color: #666;">
-                            {{ $courseStudent->created_at ? $courseStudent->created_at->format('M d, Y') : 'N/A' }}
+                            {{ $courseStudent->course->code ?? 'N/A' }}
                         </td>
                         <td style="padding: 1rem; text-align: center;">
                             <a href="{{ route('course_students.show', $courseStudent->id) }}" title="View" style="padding: 0.5rem 0.75rem; background: none; color: #ABC28B; border: 2px solid #ABC28B; border-radius: 6px; text-decoration: none; margin-right: 0.5rem; display: inline-block; font-size: 1rem; transition: all 0.2s ease;" onmouseover="this.style.backgroundColor='rgba(171, 194, 139, 0.1)';" onmouseout="this.style.backgroundColor='transparent';">👁️</a>
@@ -50,12 +46,10 @@
                                 <button type="submit" title="Delete" style="padding: 0.5rem 0.75rem; background: none; color: #ABC28B; border: 2px solid #ABC28B; border-radius: 6px; cursor: pointer; font-size: 1rem; transition: all 0.2s ease;" onmouseover="this.style.backgroundColor='rgba(171, 194, 139, 0.1)';" onmouseout="this.style.backgroundColor='transparent';">🗑️</button>
                             </form>
                         </td>
-                            </form>
-                        </td>
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="5" style="padding: 2rem; text-align: center; color: #999;">
+                        <td colspan="4" style="padding: 2rem; text-align: center; color: #999;">
                             No course-student assignments available. <a href="{{ route('course_students.create') }}" style="color: #ec4899; text-decoration: none; font-weight: 600;">Create one</a>
                         </td>
                     </tr>

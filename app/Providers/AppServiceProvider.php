@@ -24,7 +24,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        if (env('APP_ENV') === 'local') {
+        if (env('APP_ENV') === 'production') {
             // Trust all proxies for Railway deployment
             \Illuminate\Http\Request::setTrustedProxies(['*'], \Illuminate\Http\Request::HEADER_X_FORWARDED_ALL);
             URL::forceScheme('https');

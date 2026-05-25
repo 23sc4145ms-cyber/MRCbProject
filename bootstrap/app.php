@@ -12,13 +12,16 @@ return Application::configure(basePath: dirname(__DIR__))
     )
 
     ->withMiddleware(function (Middleware $middleware): void {
-    $middleware->alias([
-        'session.check' => \App\Http\Middleware\SessionCheck::class,
-        'check.maintenance' => \App\Http\Middleware\CheckMaintenance::class,
-        'force.password.change' => \App\Http\Middleware\ForcePasswordChange::class,
-        'admin.only' => \App\Http\Middleware\AdminOnly::class,
-        'prevent.back' => \App\Http\Middleware\PreventBackHistory::class,
-    ]);
+        // Trust proxies for Railway deployment
+        $middleware->trustProxies(at: '*');
+        
+        $middleware->alias([
+            'session.check' => \App\Http\Middleware\SessionCheck::class,
+            'check.maintenance' => \App\Http\Middleware\CheckMaintenance::class,
+            'force.password.change' => \App\Http\Middleware\ForcePasswordChange::class,
+            'admin.only' => \App\Http\Middleware\AdminOnly::class,
+            'prevent.back' => \App\Http\Middleware\PreventBackHistory::class,
+        ]);
  })
     
 

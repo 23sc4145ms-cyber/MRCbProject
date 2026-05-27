@@ -19,8 +19,12 @@ COPY . .
 
 RUN composer install --no-dev --optimize-autoloader
 
+RUN if [ ! -f .env ]; then cp .env.example .env; fi
+
+RUN php artisan key:generate --force
+
 RUN chmod -R 775 storage bootstrap/cache
 
-EXPOSE 10000
+EXPOSE 8000
 
-CMD php artisan config:cache && php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=$PORT
+CMD php artisan config:cache && php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=${PORT:-8000}

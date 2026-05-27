@@ -7,7 +7,6 @@
     
     <div style="max-width: 1400px; margin: 0 auto;">
         
-        <!-- Header -->
         <div style="background: linear-gradient(135deg, #556647 0%, #3d4a32 100%); border-radius: 12px; padding: 2.5rem; margin-bottom: 2.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.15); color: white;">
             <div style="display: flex; justify-content: space-between; align-items: center;">
                 <div>
@@ -30,7 +29,6 @@
             </div>
         @endif
 
-        <!-- Table -->
         <div style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
             @if($degrees->count() > 0)
                 <table style="width: 100%; border-collapse: collapse;">
@@ -47,13 +45,13 @@
                                 <td style="padding: 1.25rem; color: #677C56; font-weight: 600;">{{ $degree->id }}</td>
                                 <td style="padding: 1.25rem; color: #112C01; font-weight: 500;">{{ $degree->Degree }}</td>
                                 <td style="padding: 1.25rem;">
-                                    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-                                        <a href="{{ route('degrees.show', $degree->id) }}" style="background: #17a2b8; color: white; padding: 0.5rem 1rem; border-radius: 6px; text-decoration: none; font-size: 0.9rem; transition: background 0.3s;">View</a>
-                                        <a href="{{ route('degrees.edit', $degree->id) }}" style="background: #ffc107; color: #112C01; padding: 0.5rem 1rem; border-radius: 6px; text-decoration: none; font-size: 0.9rem; transition: background 0.3s; font-weight: 600;">Edit</a>
+                                    <div class="action-group" style="justify-content: flex-start;">
+                                        <a href="{{ route('degrees.show', $degree->id) }}" class="action-btn action-btn-sm action-btn-view">View</a>
+                                        <a href="{{ route('degrees.edit', $degree->id) }}" class="action-btn action-btn-sm action-btn-edit">Edit</a>
                                         <form action="{{ route('degrees.destroy', $degree->id) }}" method="POST" style="display:inline;">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" style="background: #dc3545; color: white; padding: 0.5rem 1rem; border-radius: 6px; border: none; font-size: 0.9rem; cursor: pointer; transition: background 0.3s;" onclick="return confirm('Are you sure?')">Delete</button>
+                                            <button type="submit" class="action-btn action-btn-sm action-btn-delete" onclick="return confirm('Are you sure?')">Delete</button>
                                         </form>
                                     </div>
                                 </td>
@@ -64,7 +62,7 @@
             @else
                 <div style="padding: 3rem; text-align: center; color: #677C56;">
                     <p style="font-size: 1.1rem; margin: 0 0 1rem 0;">No degrees found.</p>
-                    <a href="{{ route('degrees.create') }}" style="color: #ABC28B; text-decoration: none; font-weight: 600;">Create one now →</a>
+                    <a href="{{ route('degrees.create') }}" style="color: #ABC28B; text-decoration: none; font-weight: 600;">Create one now</a>
                 </div>
             @endif
         </div>

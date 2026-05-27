@@ -81,7 +81,7 @@
             <select name="degree_id" id="degree" required style="width: 100%; padding: 0.75rem; border: 2px solid #e0e7d8; border-radius: 8px; font-size: 1rem; transition: border-color 0.2s ease;" onfocus="this.style.borderColor='#ABC28B';" onblur="this.style.borderColor='#e0e7d8';">
                 <option value="" disabled>Select a degree</option>
                 @foreach($degrees as $degree)
-                    <option value="{{ $degree->id }}" {{ $student->course_id == $degree->id ? 'selected' : '' }}>{{ $degree->name }}</option>
+                    <option value="{{ $degree->id }}" {{ $student->degree_id == $degree->id ? 'selected' : '' }}>{{ $degree->name ?? $degree->Degree }}</option>
                 @endforeach
             </select>
             <small class="error-message" style="color: #ef4444; display: none; margin-top: 0.25rem;"></small>

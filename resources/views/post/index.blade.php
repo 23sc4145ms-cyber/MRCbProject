@@ -23,15 +23,15 @@
                 <div style="display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; align-items: flex-start;">
                     <div>
                         <h2 style="margin: 0; color: #112C01;">{{ $post->title }}</h2>
-                        <p style="margin-top: 0.5rem; color: #677C56;">By {{ $post->user->name ?? 'Unknown User' }} • {{ $post->created_at?->format('M d, Y') }}</p>
+                        <p style="margin-top: 0.5rem; color: #677C56;">By {{ $post->user->name ?? 'Unknown User' }} | {{ $post->created_at?->format('M d, Y') }}</p>
                     </div>
-                    <div style="display: flex; gap: 0.5rem;">
-                        <a href="{{ route('posts.show', $post->id) }}" title="View" style="padding: 0.5rem 0.75rem; background: none; color: #ABC28B; border: 2px solid #ABC28B; border-radius: 6px; text-decoration: none; font-size: 1rem; transition: all 0.2s ease;" onmouseover="this.style.backgroundColor='rgba(171, 194, 139, 0.1)';" onmouseout="this.style.backgroundColor='transparent';">👁️</a>
-                        <a href="{{ route('posts.edit', $post->id) }}" title="Edit" style="padding: 0.5rem 0.75rem; background: none; color: #ABC28B; border: 2px solid #ABC28B; border-radius: 6px; text-decoration: none; font-size: 1rem; transition: all 0.2s ease;" onmouseover="this.style.backgroundColor='rgba(171, 194, 139, 0.1)';" onmouseout="this.style.backgroundColor='transparent';">✏️</a>
+                    <div class="action-group">
+                        <a href="{{ route('posts.show', $post->id) }}" class="action-btn action-btn-sm action-btn-view" title="View">View</a>
+                        <a href="{{ route('posts.edit', $post->id) }}" class="action-btn action-btn-sm action-btn-edit" title="Edit">Edit</a>
                         <form action="{{ route('posts.destroy', $post->id) }}" method="POST" style="display: inline;" onsubmit="return confirm('Delete this post?');">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" title="Delete" style="padding: 0.5rem 0.75rem; background: none; color: #ABC28B; border: 2px solid #ABC28B; border-radius: 6px; cursor: pointer; font-size: 1rem; transition: all 0.2s ease;" onmouseover="this.style.backgroundColor='rgba(171, 194, 139, 0.1)';" onmouseout="this.style.backgroundColor='transparent';">🗑️</button>
+                            <button type="submit" class="action-btn action-btn-sm action-btn-delete" title="Delete">Delete</button>
                         </form>
                     </div>
                 </div>

@@ -143,6 +143,80 @@
             margin-top: auto;
         }
 
+        .action-group {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .action-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.35rem;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
+            box-shadow: 0 4px 6px rgba(17, 44, 1, 0.14);
+        }
+
+        .action-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .action-btn-sm {
+            padding: 0.5rem 1rem;
+            font-size: 0.95rem;
+        }
+
+        .action-btn-view {
+            background: #ABC28B;
+            color: #112C01;
+        }
+
+        .action-btn-view:hover {
+            background: #9aba7f;
+            box-shadow: 0 8px 12px rgba(171, 194, 139, 0.4);
+        }
+
+        .action-btn-edit {
+            background: #90A854;
+            color: #112C01;
+        }
+
+        .action-btn-edit:hover {
+            background: #7a8f47;
+            box-shadow: 0 8px 12px rgba(144, 168, 84, 0.4);
+        }
+
+        .action-btn-delete {
+            background: #677C56;
+            color: #fff;
+        }
+
+        .action-btn-delete:hover {
+            background: #556647;
+            box-shadow: 0 8px 12px rgba(103, 124, 86, 0.4);
+        }
+
+        .action-btn-back {
+            background: #e5e7eb;
+            color: #374151;
+            box-shadow: none;
+        }
+
+        .action-btn-back:hover {
+            background: #d1d5db;
+            box-shadow: none;
+        }
+
         /* MOBILE */
         @media (max-width: 768px) {
             nav {
@@ -184,6 +258,14 @@
 
             main {
                 padding: 1rem;
+            }
+
+            .action-group {
+                justify-content: stretch;
+            }
+
+            .action-btn {
+                width: 100%;
             }
         }
     </style>

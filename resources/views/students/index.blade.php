@@ -100,10 +100,10 @@
             
             <div style="margin-bottom: 1.5rem;">
                 <label style="display: block; color: #ABC28B; font-weight: 600; margin-bottom: 0.5rem;">Degree *</label>
-                <select id="edit_course_id" required style="width: 100%; padding: 0.75rem; border: 2px solid #e0e7d8; border-radius: 8px;">
+                <select id="edit_degree_id" required style="width: 100%; padding: 0.75rem; border: 2px solid #e0e7d8; border-radius: 8px;">
                     <option value="">Select a degree</option>
-                    @foreach(\App\Models\Course::all() as $course)
-                        <option value="{{ $course->id }}">{{ $course->name }}</option>
+                    @foreach(\App\Models\Degree::all() as $degree)
+                        <option value="{{ $degree->id }}">{{ $degree->name ?? $degree->Degree }}</option>
                     @endforeach
                 </select>
             </div>

@@ -47,9 +47,9 @@
             @endif
         </div>
 
-        <div style="display: flex; gap: 1rem;">
-            <a href="{{ route('teachers.edit', $teacher->id) }}" style="padding: 0.75rem 1.5rem; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: #fff; border-radius: 8px; text-decoration: none; font-weight: 600;">Edit Teacher</a>
-            <a href="{{ route('teachers.index') }}" style="padding: 0.75rem 1.5rem; background: #e5e7eb; color: #374151; border-radius: 8px; text-decoration: none;">Back to List</a>
+        <div class="action-group" style="justify-content: flex-start;">
+            <a href="{{ route('teachers.edit', $teacher->id) }}" class="action-btn action-btn-edit">Edit Teacher</a>
+            <a href="{{ route('teachers.index') }}" class="action-btn action-btn-back">Back to List</a>
         </div>
     </div>
 @endsection

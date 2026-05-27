@@ -21,9 +21,9 @@
             <p style="padding: 0.75rem; background: #f0f5eb; border-left: 4px solid #ABC28B; border-radius: 6px; color: #666;">{{ $degree->created_at ? $degree->created_at->format('M d, Y H:i') : 'N/A' }}</p>
         </div>
 
-        <div style="display: flex; gap: 1rem;">
-            <a href="{{ route('degrees.edit', $degree->id) }}" style="padding: 0.75rem 1.5rem; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: #fff; border: none; border-radius: 8px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: box-shadow 0.2s ease; box-shadow: 0 4px 6px rgba(245, 158, 11, 0.25); text-decoration: none; display: inline-block;" onmouseover="this.style.boxShadow='0 8px 12px rgba(245, 158, 11, 0.4)';" onmouseout="this.style.boxShadow='0 4px 6px rgba(245, 158, 11, 0.25)';">Edit</a>
-            <a href="{{ route('degrees.index') }}" style="padding: 0.75rem 1.5rem; background-color: #e5e7eb; color: #374151; text-decoration: none; border: none; border-radius: 8px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: background-color 0.2s ease; display: inline-block;" onmouseover="this.style.backgroundColor='#d1d5db';" onmouseout="this.style.backgroundColor='#e5e7eb';">Back</a>
+        <div class="action-group" style="justify-content: flex-start;">
+            <a href="{{ route('degrees.edit', $degree->id) }}" class="action-btn action-btn-edit">Edit</a>
+            <a href="{{ route('degrees.index') }}" class="action-btn action-btn-back">Back</a>
         </div>
     </div>
 

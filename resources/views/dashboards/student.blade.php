@@ -327,7 +327,7 @@
                     </div>
                     <div class="info-item">
                         <label>Degree</label>
-                        <div class="value">{{ $student->course->name ?? 'Not Assigned' }}</div>
+                        <div class="value">{{ $student->degree->name ?? $student->degree->Degree ?? 'Not Assigned' }}</div>
                     </div>
                     <div class="info-item">
                         <label>Student ID</label>

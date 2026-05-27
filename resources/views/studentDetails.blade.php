@@ -41,47 +41,38 @@
                 <td style="padding: 1rem; color: #666;">{{ $student['contact'] }}</td>
 
                 <td style="padding: 1rem;">
-                    <!-- View -->
-                    <a href="/students/{{ $student['id'] }}" title="View" style="padding: 0.5rem 0.75rem; background: none; color: #ABC28B; text-decoration: none; border: 2px solid #ABC28B; border-radius: 6px; margin-right: 0.5rem; display: inline-block; font-size: 1rem; transition: all 0.2s ease;" onmouseover="this.style.backgroundColor='rgba(171, 194, 139, 0.1)';" onmouseout="this.style.backgroundColor='transparent';">👁️</a>
-
-                    <!-- Edit -->
-                    <a href="/students/{{ $student['id'] }}/edit" title="Edit" style="padding: 0.5rem 0.75rem; background: none; color: #ABC28B; text-decoration: none; border: 2px solid #ABC28B; border-radius: 6px; margin-right: 0.5rem; display: inline-block; font-size: 1rem; transition: all 0.2s ease;" onmouseover="this.style.backgroundColor='rgba(171, 194, 139, 0.1)';" onmouseout="this.style.backgroundColor='transparent';">✏️</a>
-
-                    <!-- Delete -->
-                    <form id="delete-form-{{ $student['id'] }}" action="/students/{{ $student['id'] }}" method="POST" style="display: inline;">
-                        @csrf
-                        @method('DELETE')
-                        <button type="button" onclick="openModal({{ $student['id'] }})" title="Delete" style="padding: 0.5rem 0.75rem; background: none; color: #ABC28B; border: 2px solid #ABC28B; border-radius: 6px; cursor: pointer; font-size: 1rem; transition: all 0.2s ease;" onmouseover="this.style.backgroundColor='rgba(171, 194, 139, 0.1)';" onmouseout="this.style.backgroundColor='transparent';">🗑️</button>
-                    </form>
+                    <div class="action-group" style="justify-content: flex-start;">
+                        <a href="/students/{{ $student['id'] }}" class="action-btn action-btn-sm action-btn-view" title="View">View</a>
+                        <a href="/students/{{ $student['id'] }}/edit" class="action-btn action-btn-sm action-btn-edit" title="Edit">Edit</a>
+                        <form id="delete-form-{{ $student['id'] }}" action="/students/{{ $student['id'] }}" method="POST" style="display: inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="button" onclick="openModal({{ $student['id'] }})" class="action-btn action-btn-sm action-btn-delete" title="Delete">Delete</button>
+                        </form>
+                    </div>
                 </td>
             </tr>
             @endforeach
         </tbody>
     </table>
 
-
-    <!-- MODAL -->
     <div id="deleteModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); justify-content:center; align-items:center; z-index:999;">
-        
         <div style="background:#fff; padding:30px; border-radius:12px; text-align:center; width:300px;">
             <h2 style="color:#ABC28B;">Confirm Delete</h2>
             <p style="margin:15px 0; color:#555;">Are you sure you want to delete this student?</p>
 
             <div style="margin-top:20px;">
-                <button onclick="confirmDelete()" 
-                    style="padding:8px 15px; background:#ef4444; color:#fff; border:none; border-radius:6px; margin-right:10px;">
+                <button onclick="confirmDelete()" style="padding:8px 15px; background:#ef4444; color:#fff; border:none; border-radius:6px; margin-right:10px;">
                     Yes
                 </button>
 
-                <button onclick="closeModal()" 
-                    style="padding:8px 15px; background:#ccc; border:none; border-radius:6px;">
+                <button onclick="closeModal()" style="padding:8px 15px; background:#ccc; border:none; border-radius:6px;">
                     No
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- SCRIPT -->
     <script>
         let deleteId = null;
 
@@ -96,13 +87,12 @@
         }
 
         function confirmDelete() {
-            if(deleteId){
-                // Use AJAX to delete student
+            if (deleteId) {
                 $.ajax({
                     url: "/students/" + deleteId,
                     type: "DELETE",
                     success: function(response) {
-                        if(response.success) {
+                        if (response.success) {
                             alert("Student deleted successfully!");
                             window.location.reload();
                         }

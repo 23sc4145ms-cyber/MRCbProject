@@ -40,9 +40,9 @@
             </div>
         </div>
 
-        <div style="display: flex; gap: 1rem; margin-top: 2rem;">
-            <a href="{{ route('profiles.edit', $profile->id) }}" style="padding: 0.75rem 1.5rem; background: #f59e0b; color: #fff; border-radius: 8px; text-decoration: none;">Edit</a>
-            <a href="{{ route('profiles.index') }}" style="padding: 0.75rem 1.5rem; background: #e5e7eb; color: #374151; border-radius: 8px; text-decoration: none;">Back</a>
+        <div class="action-group" style="justify-content: flex-start; margin-top: 2rem;">
+            <a href="{{ route('profiles.edit', $profile->id) }}" class="action-btn action-btn-edit">Edit</a>
+            <a href="{{ route('profiles.index') }}" class="action-btn action-btn-back">Back</a>
         </div>
     </div>
 @endsection

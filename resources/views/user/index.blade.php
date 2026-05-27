@@ -38,13 +38,15 @@
                         <td style="padding: 1rem; color: #666;">{{ $user->profile ? 'Created' : 'Not yet' }}</td>
                         <td style="padding: 1rem; color: #666;">{{ $user->posts ? $user->posts->count() : 0 }}</td>
                         <td style="padding: 1rem; text-align: center;">
-                            <a href="{{ route('users.show', $user->id) }}" title="View" style="padding: 0.5rem 0.75rem; background: none; color: #ABC28B; border: 2px solid #ABC28B; border-radius: 6px; text-decoration: none; margin-right: 0.5rem; display: inline-block; font-size: 1rem; transition: all 0.2s ease;" onmouseover="this.style.backgroundColor='rgba(171, 194, 139, 0.1)';" onmouseout="this.style.backgroundColor='transparent';">👁️</a>
-                            <a href="{{ route('users.edit', $user->id) }}" title="Edit" style="padding: 0.5rem 0.75rem; background: none; color: #ABC28B; border: 2px solid #ABC28B; border-radius: 6px; text-decoration: none; margin-right: 0.5rem; display: inline-block; font-size: 1rem; transition: all 0.2s ease;" onmouseover="this.style.backgroundColor='rgba(171, 194, 139, 0.1)';" onmouseout="this.style.backgroundColor='transparent';">✏️</a>
-                            <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display: inline;" onsubmit="return confirm('Delete this user? Related profile and posts may also be removed.');">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" title="Delete" style="padding: 0.5rem 0.75rem; background: none; color: #ABC28B; border: 2px solid #ABC28B; border-radius: 6px; cursor: pointer; font-size: 1rem; transition: all 0.2s ease;" onmouseover="this.style.backgroundColor='rgba(171, 194, 139, 0.1)';" onmouseout="this.style.backgroundColor='transparent';">🗑️</button>
-                            </form>
+                            <div class="action-group">
+                                <a href="{{ route('users.show', $user->id) }}" class="action-btn action-btn-sm action-btn-view" title="View">View</a>
+                                <a href="{{ route('users.edit', $user->id) }}" class="action-btn action-btn-sm action-btn-edit" title="Edit">Edit</a>
+                                <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display: inline;" onsubmit="return confirm('Delete this user? Related profile and posts may also be removed.');">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="action-btn action-btn-sm action-btn-delete" title="Delete">Delete</button>
+                                </form>
+                            </div>
                         </td>
                     </tr>
                 @empty

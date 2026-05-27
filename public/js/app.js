@@ -183,7 +183,7 @@ $(document).ready(function() {
             username: $('#username').val(),
             email: $('#email').val(),
             contact: $('#contact').val() || $('#contactNo').val(),
-            course_id: $('#course_id').val() || $('#degree').val()
+            degree_id: $('#degree_id').val() || $('#degree').val()
         };
         
         $.ajax({
@@ -585,7 +585,7 @@ function viewStudent(id) {
         const fullName = student.fname + ' ' + (student.mname || '') + ' ' + student.lname;
         const email = student.user ? student.user.email : 'N/A';
         const username = student.user ? student.user.username : 'N/A';
-        const course = student.course ? student.course.name : 'Not Assigned';
+        const degree = student.degree ? (student.degree.name || student.degree.Degree) : 'Not Assigned';
         
         let html = `
             <div style="display: grid; gap: 1.5rem;">
@@ -607,7 +607,7 @@ function viewStudent(id) {
                 </div>
                 <div>
                     <label style="display: block; color: #90A854; font-weight: 600; margin-bottom: 0.5rem;">Degree</label>
-                    <p style="margin: 0; color: #333;">${course}</p>
+                    <p style="margin: 0; color: #333;">${degree}</p>
                 </div>
                 <div>
                     <label style="display: block; color: #90A854; font-weight: 600; margin-bottom: 0.5rem;">Student ID</label>
@@ -630,7 +630,7 @@ function editStudent(id) {
         $('#edit_mname').val(student.mname || '');
         $('#edit_lname').val(student.lname);
         $('#edit_contact').val(student.contact);
-        $('#edit_course_id').val(student.course_id);
+        $('#edit_degree_id').val(student.degree_id);
         
         $('#editModal').css('display', 'flex');
     });
@@ -647,7 +647,7 @@ $(document).on('submit', '#editStudentForm', function(e) {
         middle_name: $('#edit_mname').val(),
         last_name: $('#edit_lname').val(),
         contact_no: $('#edit_contact').val(),
-        course_id: $('#edit_course_id').val()
+        degree_id: $('#edit_degree_id').val()
     };
     
     $.ajax({

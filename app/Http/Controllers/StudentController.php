@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Student;
 use App\Models\Course;
+use App\Models\Degree;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
@@ -31,8 +32,8 @@ class StudentController extends Controller
      */
     public function create()
     {
-        $degrees = \App\Models\Degree::all();
-        $courses = \App\Models\Course::all();
+        $degrees = Degree::all();
+        $courses = Course::all();
         return view('studentlayout.addstudent', ['degrees' => $degrees, 'courses' => $courses]);
     }
 
@@ -53,8 +54,8 @@ class StudentController extends Controller
             'email' => 'required|email|unique:users,email|unique:user_accounts,email',
             'contact_no' => 'sometimes|required|digits:11',
             'contact' => 'sometimes|required|digits:11',
-            'degree_id' => 'sometimes|required|exists:courses,id',
-            'course_id' => 'sometimes|required|exists:courses,id',
+            'degree_id' => 'sometimes|required|exists:degrees,id',
+            'course_id' => 'sometimes|required|exists:degrees,id',
             'password' => 'nullable|string|min:6',
         ], [
             'first_name.required' => 'First name is required.',
@@ -92,7 +93,7 @@ class StudentController extends Controller
         $mname = $validated['middle_name'] ?? $validated['mname'] ?? null;
         $lname = $validated['last_name'] ?? $validated['lname'];
         $contact = $validated['contact_no'] ?? $validated['contact'];
-        $course_id = $validated['degree_id'] ?? $validated['course_id'];
+        $degreeId = $validated['degree_id'] ?? $validated['course_id'];
         $password = $validated['password'] ?? 'student1234';
         
         // Create user account
@@ -115,7 +116,7 @@ class StudentController extends Controller
             'mname' => $mname,
             'lname' => $lname,
             'contact' => $contact,
-            'course_id' => $course_id,
+            'degree_id' => $degreeId,
             'user_id' => $user->id,
         ]);
         
@@ -182,8 +183,8 @@ class StudentController extends Controller
             'lname' => 'sometimes|required|string|min:2|max:255|regex:/^[A-Za-z\s]+$/',
             'contact_no' => 'sometimes|required|digits:11',
             'contact' => 'sometimes|required|digits:11',
-            'degree_id' => 'sometimes|required|exists:courses,id',
-            'course_id' => 'sometimes|required|exists:courses,id',
+            'degree_id' => 'sometimes|required|exists:degrees,id',
+            'course_id' => 'sometimes|required|exists:degrees,id',
         ], [
             'first_name.required' => 'First name is required.',
             'fname.required' => 'First name is required.',
@@ -238,7 +239,7 @@ class StudentController extends Controller
         }
         
         if (isset($validated['degree_id']) || isset($validated['course_id'])) {
-            $updateData['course_id'] = $validated['degree_id'] ?? $validated['course_id'];
+            $updateData['degree_id'] = $validated['degree_id'] ?? $validated['course_id'];
         }
         
         $student->update($updateData);
@@ -288,5 +289,4 @@ class StudentController extends Controller
         return redirect()->route('students.index')->with('success', 'Student deleted successfully.');
     }
 }
-
 

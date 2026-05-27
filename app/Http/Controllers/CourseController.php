@@ -43,10 +43,10 @@ class CourseController extends Controller
             'units' => ['nullable', 'integer', 'min:1', 'max:6'],
         ]);
 
-        // Only save name to database (code and units will be added after migration runs on Render)
+        // Save only name and description (matching actual database columns)
         Course::create([
             'name' => $validated['name'],
-            'description' => $validated['code'] ?? 'No description', // Use code as description for now
+            'description' => $validated['code'] ?? 'No description',
         ]);
 
         return redirect()->route('courses.index')->with('success', 'Course created successfully.');

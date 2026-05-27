@@ -94,13 +94,13 @@ class TeacherController extends Controller
             ]);
         }
         
-        return view('teacher.show', compact('teacher'));
+        return view('teachers.show', compact('teacher'));
     }
 
     public function edit(string $id)
     {
         $teacher = Teacher::findOrFail($id);
-        return view('teacher.edit', compact('teacher'));
+        return view('teachers.edit', compact('teacher'));
     }
 
     public function update(Request $request, string $id)

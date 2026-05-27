@@ -5,6 +5,7 @@ $app = require_once __DIR__.'/bootstrap/app.php';
 $app->make('Illuminate\Contracts\Console\Kernel')->bootstrap();
 
 // Drop empty degrees table
+// okay na 
 DB::statement('DROP TABLE IF EXISTS degrees');
 
 // Rename subjects to courses_new temporarily

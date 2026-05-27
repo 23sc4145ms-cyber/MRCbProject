@@ -47,6 +47,7 @@ class AuthController extends Controller
         if (!$user || !Hash::check($request->password, $user->password)) {
             return back()->withErrors(['email' => 'Invalid email or password.'])->withInput();
         }
+        //okay na
 
         Session::put('user_id', $user->id);
         Session::put('user', $user);

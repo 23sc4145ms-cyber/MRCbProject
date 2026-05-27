@@ -22,6 +22,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'admin.only' => \App\Http\Middleware\AdminOnly::class,
             'prevent.back' => \App\Http\Middleware\PreventBackHistory::class,
         ]);
+        //OKAY NA
 
         //global middleware
         // $middleware->append(\App\Http\Middleware\CheckMaintenance::class);

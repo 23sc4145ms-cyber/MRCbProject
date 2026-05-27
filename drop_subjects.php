@@ -8,3 +8,4 @@ DB::statement('DROP TABLE IF EXISTS subjects');
 DB::statement('DELETE FROM migrations WHERE migration LIKE "%create_subjects_table%"');
 
 echo "Subjects table dropped successfully!\n";
+// okay na 

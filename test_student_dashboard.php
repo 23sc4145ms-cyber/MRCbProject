@@ -5,6 +5,8 @@
  * Run this with: php test_student_dashboard.php
  */
 
+// okay
+
 require __DIR__.'/vendor/autoload.php';
 
 $app = require_once __DIR__.'/bootstrap/app.php';

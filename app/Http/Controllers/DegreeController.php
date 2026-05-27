@@ -13,7 +13,7 @@ class DegreeController extends Controller
     public function index()
     {
         $degrees = Degree::all();
-        return view('degreeDetails')->with('degrees', $degrees);
+        return view('degreelayout.index')->with('degrees', $degrees);
     }
 
     /**

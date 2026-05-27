@@ -61,6 +61,25 @@
 
         </div>
 
+        <!-- Quick Actions -->
+        <div style="margin-top: 2rem; background: white; border-radius: 12px; padding: 1.75rem; box-shadow: 0 4px 6px rgba(171, 194, 139, 0.15); border-left: 5px solid #90A854;">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                <div>
+                    <h3 style="margin: 0; color: #112C01; font-size: 1.25rem; font-weight: 700;">Quick Actions</h3>
+                    <p style="margin: 0.35rem 0 0 0; color: #677C56;">Manage courses faster from the dashboard</p>
+                </div>
+
+                <div class="action-group">
+                    <a href="{{ route('courses.create') }}" class="action-btn action-btn-view" style="text-transform: none;">
+                        + Add Course
+                    </a>
+                    <a href="{{ route('courses.index') }}" class="action-btn action-btn-edit" style="text-transform: none;">
+                        View Courses
+                    </a>
+                </div>
+            </div>
+        </div>
+
     </div>
 
 </div>

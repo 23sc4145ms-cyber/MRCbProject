@@ -296,7 +296,7 @@
             <h2>Personal Information</h2>
             
             @php
-                $student = \App\Models\Student::where('user_id', session('user_id'))->with(['course', 'user'])->first();
+                $student = \App\Models\Student::where('user_id', session('user_id'))->with(['courses', 'user'])->first();
             @endphp
 
             @if($student)

@@ -466,15 +466,17 @@ $(document).ready(function() {
         } else {
             degrees.forEach(function(degree, index) {
                 const bgColor = index % 2 === 0 ? '#fff' : '#f0f5eb';
+                const code = (degree && degree.code != null && degree.code !== '') ? degree.code : '-';
+                const units = (degree && degree.units != null && degree.units !== '') ? degree.units : '-';
                 
                 html += `
                     <tr style="border-bottom: 1px solid #e0e7d8; background-color: ${bgColor};" 
                         onmouseover="this.style.backgroundColor='#f0f5eb';" 
                         onmouseout="this.style.backgroundColor='${bgColor}';">
                         <td style="padding: 1rem; color: #677C56; font-weight: 600;">${index + 1}</td>
-                        <td style="padding: 1rem; color: #333; font-weight: 600;">${degree.code}</td>
+                        <td style="padding: 1rem; color: #333; font-weight: 600;">${code}</td>
                         <td style="padding: 1rem; color: #333;">${degree.name}</td>
-                        <td style="padding: 1rem; color: #666;">${degree.units}</td>
+                        <td style="padding: 1rem; color: #666;">${units}</td>
                         <td style="padding: 1rem; text-align: center;">
                             <button onclick="viewDegree(${degree.id})" style="padding: 0.5rem 1rem; background: #ABC28B; color: #112C01; border: none; border-radius: 6px; cursor: pointer; margin-right: 0.5rem; font-weight: 600; transition: all 0.2s;" title="View" onmouseover="this.style.background='#9aba7f'; this.style.transform='translateY(-2px)';" onmouseout="this.style.background='#ABC28B'; this.style.transform='translateY(0)';">
                                 ✓ View

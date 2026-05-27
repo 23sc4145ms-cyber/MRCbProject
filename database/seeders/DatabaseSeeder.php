@@ -18,9 +18,8 @@ class DatabaseSeeder extends Seeder
     {
         // Create default degrees
         Degree::create(['Degree' => 'BSIT']);
-        Degree::create(['Degree' => 'BSCS']);
-        Degree::create(['Degree' => 'BTLED']);
-        Degree::create(['Degree' => 'BSIS']);
+        Degree::create(['Degree' => 'BSHM']);
+        Degree::create(['Degree' => 'BSFM']);
 
         // Call UserSeeder
         $this->call(UserSeeder::class);

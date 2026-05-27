@@ -12,8 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('courses', function (Blueprint $table) {
-            $table->string('code')->unique()->after('id');
-            $table->integer('units')->default(3)->after('description');
+            if (!Schema::hasColumn('courses', 'code')) {
+                $table->string('code')->unique()->after('id');
+            }
+            if (!Schema::hasColumn('courses', 'units')) {
+                $table->integer('units')->default(3)->after('description');
+            }
         });
     }
 

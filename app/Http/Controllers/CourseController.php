@@ -37,11 +37,17 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
+        // Temporarily make code validation optional until database columns are ready
         $validated = $request->validate([
-            'code' => ['required', 'string', 'max:20', 'unique:courses,code'],
+            'code' => ['nullable', 'string', 'max:20'],
             'name' => ['required', 'string', 'max:255'],
-            'units' => ['required', 'integer', 'min:1', 'max:6'],
+            'units' => ['nullable', 'integer', 'min:1', 'max:6'],
         ]);
+
+        // Use code if provided, otherwise generate one
+        if (!$validated['code']) {
+            $validated['code'] = 'COURSE-' . time();
+        }
 
         Course::create($validated);
 

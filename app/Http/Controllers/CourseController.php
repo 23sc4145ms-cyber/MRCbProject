@@ -37,19 +37,17 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        // Temporarily make code validation optional until database columns are ready
         $validated = $request->validate([
             'code' => ['nullable', 'string', 'max:20'],
             'name' => ['required', 'string', 'max:255'],
             'units' => ['nullable', 'integer', 'min:1', 'max:6'],
         ]);
 
-        // Use code if provided, otherwise generate one
-        if (!$validated['code']) {
-            $validated['code'] = 'COURSE-' . time();
-        }
-
-        Course::create($validated);
+        // Only save name to database (code and units will be added after migration runs on Render)
+        Course::create([
+            'name' => $validated['name'],
+            'description' => $validated['code'] ?? 'No description', // Use code as description for now
+        ]);
 
         return redirect()->route('courses.index')->with('success', 'Course created successfully.');
     }
@@ -86,13 +84,16 @@ class CourseController extends Controller
     public function update(Request $request, string $id)
     {
         $validated = $request->validate([
-            'code' => ['required', 'string', 'max:20', 'unique:courses,code,'.$id],
+            'code' => ['nullable', 'string', 'max:20'],
             'name' => ['required', 'string', 'max:255'],
-            'units' => ['required', 'integer', 'min:1', 'max:6'],
+            'units' => ['nullable', 'integer', 'min:1', 'max:6'],
         ]);
 
         $course = Course::findOrFail($id);
-        $course->update($validated);
+        $course->update([
+            'name' => $validated['name'],
+            'description' => $validated['code'] ?? $course->description,
+        ]);
 
         // Check if AJAX request
         if (request()->ajax()) {

@@ -20,13 +20,8 @@ return new class extends Migration
                 $table->unsignedTinyInteger('units')->nullable()->after('description');
             }
         });
-
-        // Make description nullable (existing UI doesn't collect it)
-        Schema::table('courses', function (Blueprint $table) {
-            if (Schema::hasColumn('courses', 'description')) {
-                $table->string('description')->nullable()->change();
-            }
-        });
+        // NOTE: Avoid $table->change() here to keep migrations working
+        // on environments without doctrine/dbal (e.g. Render/Railway).
     }
 
     /**
@@ -40,12 +35,6 @@ return new class extends Migration
             }
             if (Schema::hasColumn('courses', 'code')) {
                 $table->dropColumn('code');
-            }
-        });
-
-        Schema::table('courses', function (Blueprint $table) {
-            if (Schema::hasColumn('courses', 'description')) {
-                $table->string('description')->nullable(false)->change();
             }
         });
     }

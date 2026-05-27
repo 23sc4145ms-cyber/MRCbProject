@@ -422,7 +422,7 @@
                 </div>
             @endif
 
-            <form action="{{ route('Teacher.password.update') }}" method="POST" class="password-form" onsubmit="return confirmPasswordChange()">
+            <form action="{{ route('teachers.password.update') }}" method="POST" class="password-form" onsubmit="return confirmPasswordChange()">
                 @csrf
                 
                 <div class="form-group">

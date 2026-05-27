@@ -71,14 +71,14 @@ $(document).ready(function() {
                         <td style="padding: 1rem; color: #333;">${fullName}</td>
                         <td style="padding: 1rem; color: #666;">${email}</td>
                         <td style="padding: 1rem; text-align: center;">
-                            <button onclick="viewStudent(${student.id})" style="padding: 0.5rem 1rem; background: linear-gradient(135deg, #ABC28B, #90A854); color: #fff; border: none; border-radius: 6px; cursor: pointer; margin-right: 0.5rem; font-weight: 600;" title="View">
-                                👁️ View
+                            <button onclick="viewStudent(${student.id})" style="padding: 0.5rem 1rem; background: #ABC28B; color: #112C01; border: none; border-radius: 6px; cursor: pointer; margin-right: 0.5rem; font-weight: 600; transition: all 0.2s;" title="View" onmouseover="this.style.background='#9aba7f'; this.style.transform='translateY(-2px)';" onmouseout="this.style.background='#ABC28B'; this.style.transform='translateY(0)';">
+                                ✓ View
                             </button>
-                            <button onclick="editStudent(${student.id})" style="padding: 0.5rem 1rem; background: linear-gradient(135deg, #90A854, #7a8f47); color: #fff; border: none; border-radius: 6px; cursor: pointer; margin-right: 0.5rem; font-weight: 600;" title="Edit">
-                                ✏️ Edit
+                            <button onclick="editStudent(${student.id})" style="padding: 0.5rem 1rem; background: #90A854; color: #112C01; border: none; border-radius: 6px; cursor: pointer; margin-right: 0.5rem; font-weight: 600; transition: all 0.2s;" title="Edit" onmouseover="this.style.background='#7a8f47'; this.style.transform='translateY(-2px)';" onmouseout="this.style.background='#90A854'; this.style.transform='translateY(0)';">
+                                ✎ Edit
                             </button>
-                            <button onclick="deleteStudent(${student.id})" style="padding: 0.5rem 1rem; background: linear-gradient(135deg, #677C56, #556647); color: #fff; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;" title="Delete">
-                                🗑️ Delete
+                            <button onclick="deleteStudent(${student.id})" style="padding: 0.5rem 1rem; background: #677C56; color: #fff; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; transition: all 0.2s;" title="Delete" onmouseover="this.style.background='#556647'; this.style.transform='translateY(-2px)';" onmouseout="this.style.background='#677C56'; this.style.transform='translateY(0)';">
+                                🗑 Delete
                             </button>
                         </td>
                     </tr>
@@ -406,14 +406,14 @@ $(document).ready(function() {
                         <td style="padding: 1rem; color: #333;">${fullName}</td>
                         <td style="padding: 1rem; color: #666;">${email}</td>
                         <td style="padding: 1rem; text-align: center;">
-                            <button onclick="viewTeacher(${teacher.id})" style="padding: 0.5rem 1rem; background: linear-gradient(135deg, #ABC28B, #90A854); color: #fff; border: none; border-radius: 6px; cursor: pointer; margin-right: 0.5rem; font-weight: 600;" title="View">
-                                👁️ View
+                            <button onclick="viewTeacher(${teacher.id})" style="padding: 0.5rem 1rem; background: #ABC28B; color: #112C01; border: none; border-radius: 6px; cursor: pointer; margin-right: 0.5rem; font-weight: 600; transition: all 0.2s;" title="View" onmouseover="this.style.background='#9aba7f'; this.style.transform='translateY(-2px)';" onmouseout="this.style.background='#ABC28B'; this.style.transform='translateY(0)';">
+                                ✓ View
                             </button>
-                            <button onclick="editTeacher(${teacher.id})" style="padding: 0.5rem 1rem; background: linear-gradient(135deg, #90A854, #7a8f47); color: #fff; border: none; border-radius: 6px; cursor: pointer; margin-right: 0.5rem; font-weight: 600;" title="Edit">
-                                ✏️ Edit
+                            <button onclick="editTeacher(${teacher.id})" style="padding: 0.5rem 1rem; background: #90A854; color: #112C01; border: none; border-radius: 6px; cursor: pointer; margin-right: 0.5rem; font-weight: 600; transition: all 0.2s;" title="Edit" onmouseover="this.style.background='#7a8f47'; this.style.transform='translateY(-2px)';" onmouseout="this.style.background='#90A854'; this.style.transform='translateY(0)';">
+                                ✎ Edit
                             </button>
-                            <button onclick="deleteTeacher(${teacher.id})" style="padding: 0.5rem 1rem; background: linear-gradient(135deg, #677C56, #556647); color: #fff; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;" title="Delete">
-                                🗑️ Delete
+                            <button onclick="deleteTeacher(${teacher.id})" style="padding: 0.5rem 1rem; background: #677C56; color: #fff; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; transition: all 0.2s;" title="Delete" onmouseover="this.style.background='#556647'; this.style.transform='translateY(-2px)';" onmouseout="this.style.background='#677C56'; this.style.transform='translateY(0)';">
+                                🗑 Delete
                             </button>
                         </td>
                     </tr>
@@ -476,14 +476,14 @@ $(document).ready(function() {
                         <td style="padding: 1rem; color: #333;">${degree.name}</td>
                         <td style="padding: 1rem; color: #666;">${degree.units}</td>
                         <td style="padding: 1rem; text-align: center;">
-                            <button onclick="viewDegree(${degree.id})" style="padding: 0.5rem 1rem; background: linear-gradient(135deg, #ABC28B, #90A854); color: #fff; border: none; border-radius: 6px; cursor: pointer; margin-right: 0.5rem; font-weight: 600;" title="View">
-                                👁️ View
+                            <button onclick="viewDegree(${degree.id})" style="padding: 0.5rem 1rem; background: #ABC28B; color: #112C01; border: none; border-radius: 6px; cursor: pointer; margin-right: 0.5rem; font-weight: 600; transition: all 0.2s;" title="View" onmouseover="this.style.background='#9aba7f'; this.style.transform='translateY(-2px)';" onmouseout="this.style.background='#ABC28B'; this.style.transform='translateY(0)';">
+                                ✓ View
                             </button>
-                            <button onclick="editDegree(${degree.id})" style="padding: 0.5rem 1rem; background: linear-gradient(135deg, #90A854, #7a8f47); color: #fff; border: none; border-radius: 6px; cursor: pointer; margin-right: 0.5rem; font-weight: 600;" title="Edit">
-                                ✏️ Edit
+                            <button onclick="editDegree(${degree.id})" style="padding: 0.5rem 1rem; background: #90A854; color: #112C01; border: none; border-radius: 6px; cursor: pointer; margin-right: 0.5rem; font-weight: 600; transition: all 0.2s;" title="Edit" onmouseover="this.style.background='#7a8f47'; this.style.transform='translateY(-2px)';" onmouseout="this.style.background='#90A854'; this.style.transform='translateY(0)';">
+                                ✎ Edit
                             </button>
-                            <button onclick="deleteDegree(${degree.id})" style="padding: 0.5rem 1rem; background: linear-gradient(135deg, #677C56, #556647); color: #fff; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;" title="Delete">
-                                🗑️ Delete
+                            <button onclick="deleteDegree(${degree.id})" style="padding: 0.5rem 1rem; background: #677C56; color: #fff; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; transition: all 0.2s;" title="Delete" onmouseover="this.style.background='#556647'; this.style.transform='translateY(-2px)';" onmouseout="this.style.background='#677C56'; this.style.transform='translateY(0)';">
+                                🗑 Delete
                             </button>
                         </td>
                     </tr>

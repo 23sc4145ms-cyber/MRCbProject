@@ -22,11 +22,11 @@
             <p style="padding: 0.75rem; background: #f0f5eb; border-left: 4px solid #ABC28B; border-radius: 6px; color: #333; font-size: 1.1rem;">{{ $courseStudent->course->name ?? 'N/A' }}</p>
         </div>
 
-        <!-- Course Description -->
+        <!-- Course Details -->
         @if($courseStudent->course)
             <div style="margin-bottom: 1.5rem;">
-                <label style="display: block; color: #ABC28B; font-weight: 600; margin-bottom: 0.5rem;">Course Description</label>
-                <p style="padding: 0.75rem; background: #f0f5eb; border-left: 4px solid #ABC28B; border-radius: 6px; color: #666; line-height: 1.6;">{{ $courseStudent->course->description ?? 'No description available' }}</p>
+                <label style="display: block; color: #ABC28B; font-weight: 600; margin-bottom: 0.5rem;">Course Code and Units</label>
+                <p style="padding: 0.75rem; background: #f0f5eb; border-left: 4px solid #ABC28B; border-radius: 6px; color: #666; line-height: 1.6;">{{ $courseStudent->course->code ?? 'N/A' }} | {{ $courseStudent->course->units ?? 'N/A' }} units</p>
             </div>
         @endif
 

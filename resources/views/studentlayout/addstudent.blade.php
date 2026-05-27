@@ -226,7 +226,7 @@
             <select name="course_id" id="course_id" required>
                 <option value="" disabled selected>Select a degree</option>
                 @foreach($courses as $course)
-                    <option value="{{ $course->id }}">{{ $course->name }}</option>
+                    <option value="{{ $course->id }}">{{ $course->code }} - {{ $course->name }}</option>
                 @endforeach
             </select>
             <small class="error-message" style="color: #ef4444; display: none; margin-top: 0.25rem;"></small>

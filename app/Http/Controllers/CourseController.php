@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class CourseController extends Controller
 {
@@ -38,15 +39,15 @@ class CourseController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'code' => ['nullable', 'string', 'max:20'],
+            'code' => ['required', 'string', 'max:20', 'unique:courses,code'],
             'name' => ['required', 'string', 'max:255'],
-            'units' => ['nullable', 'integer', 'min:1', 'max:6'],
+            'units' => ['required', 'integer', 'min:1', 'max:6'],
         ]);
 
-        // Save only name and description (matching actual database columns)
         Course::create([
+            'code' => $validated['code'],
             'name' => $validated['name'],
-            'description' => $validated['code'] ?? 'No description',
+            'units' => $validated['units'],
         ]);
 
         return redirect()->route('courses.index')->with('success', 'Course created successfully.');
@@ -83,16 +84,18 @@ class CourseController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $course = Course::findOrFail($id);
+
         $validated = $request->validate([
-            'code' => ['nullable', 'string', 'max:20'],
+            'code' => ['required', 'string', 'max:20', Rule::unique('courses', 'code')->ignore($course->id)],
             'name' => ['required', 'string', 'max:255'],
-            'units' => ['nullable', 'integer', 'min:1', 'max:6'],
+            'units' => ['required', 'integer', 'min:1', 'max:6'],
         ]);
 
-        $course = Course::findOrFail($id);
         $course->update([
+            'code' => $validated['code'],
             'name' => $validated['name'],
-            'description' => $validated['code'] ?? $course->description,
+            'units' => $validated['units'],
         ]);
 
         // Check if AJAX request

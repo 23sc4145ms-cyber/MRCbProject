@@ -16,16 +16,22 @@
 
     <div style="max-width: 800px; background: #fff; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 6px rgba(171, 194, 139, 0.15);">
         
+        <!-- Course Code -->
+        <div style="margin-bottom: 1.5rem;">
+            <label style="display: block; color: #ABC28B; font-weight: 600; margin-bottom: 0.5rem;">Course Code</label>
+            <p style="padding: 0.75rem; background: #f0f5eb; border-left: 4px solid #ABC28B; border-radius: 6px; color: #333; font-size: 1.1rem;">{{ $course->code ?? 'N/A' }}</p>
+        </div>
+
         <!-- Course Name -->
         <div style="margin-bottom: 1.5rem;">
             <label style="display: block; color: #ABC28B; font-weight: 600; margin-bottom: 0.5rem;">Course Name</label>
-            <p style="padding: 0.75rem; background: #f0f5eb; border-left: 4px solid #ABC28B; border-radius: 6px; color: #333; font-size: 1.1rem;">{{ $course->name }}</p>
+            <p style="padding: 0.75rem; background: #f0f5eb; border-left: 4px solid #ABC28B; border-radius: 6px; color: #333; line-height: 1.6; white-space: pre-wrap;">{{ $course->name }}</p>
         </div>
 
-        <!-- Course Description -->
+        <!-- Units -->
         <div style="margin-bottom: 1.5rem;">
-            <label style="display: block; color: #ABC28B; font-weight: 600; margin-bottom: 0.5rem;">Description</label>
-            <p style="padding: 0.75rem; background: #f0f5eb; border-left: 4px solid #ABC28B; border-radius: 6px; color: #666; line-height: 1.6; white-space: pre-wrap;">{{ $course->description }}</p>
+            <label style="display: block; color: #ABC28B; font-weight: 600; margin-bottom: 0.5rem;">Units</label>
+            <p style="padding: 0.75rem; background: #f0f5eb; border-left: 4px solid #ABC28B; border-radius: 6px; color: #666; line-height: 1.6;">{{ $course->units ?? 'N/A' }}</p>
         </div>
 
         <!-- Created Date -->

@@ -22,10 +22,9 @@ return Application::configure(basePath: dirname(__DIR__))
             'admin.only' => \App\Http\Middleware\AdminOnly::class,
             'prevent.back' => \App\Http\Middleware\PreventBackHistory::class,
         ]);
- })
-    
 
         //global middleware
+        // $middleware->append(\App\Http\Middleware\CheckMaintenance::class);
         // $middleware->append(\App\Http\Middleware\PromotionMw::class);
 
         //middleware group
@@ -35,8 +34,8 @@ return Application::configure(basePath: dirname(__DIR__))
         // ]);
 
         //route middleware
-    //     $middleware->alias(['maintenance' => \App\Http\Middleware\CheckMaintenance::class]);
-    // });
+        //     $middleware->alias(['maintenance' => \App\Http\Middleware\CheckMaintenance::class]);
+    })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
     })->create();

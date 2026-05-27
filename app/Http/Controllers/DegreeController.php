@@ -12,7 +12,7 @@ class DegreeController extends Controller
      */
     public function index()
     {
-        $degrees = Degree::all();
+        $degrees = Degree::orderBy('id')->get();
         return view('degreelayout.index')->with('degrees', $degrees);
     }
 

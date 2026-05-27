@@ -42,7 +42,7 @@
                     <tbody>
                         @foreach($degrees as $degree)
                             <tr style="border-bottom: 1px solid #f0f0f0; transition: background 0.2s;">
-                                <td style="padding: 1.25rem; color: #677C56; font-weight: 600;">{{ $degree->id }}</td>
+                                <td style="padding: 1.25rem; color: #677C56; font-weight: 600;">{{ $loop->iteration }}</td>
                                 <td style="padding: 1.25rem; color: #112C01; font-weight: 500;">{{ $degree->Degree }}</td>
                                 <td style="padding: 1.25rem;">
                                     <div class="action-group" style="justify-content: flex-start;">

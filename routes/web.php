@@ -21,8 +21,7 @@ Route::get('/', function () {
 });
 
 Route::get('/login', [AuthController::class, 'showLogin'])
-    ->name('login')
-    ->middleware(['check.maintenance']);
+    ->name('login');
 Route::post('/login', [AuthController::class, 'submitLogin'])->name('login.submit');
 
 

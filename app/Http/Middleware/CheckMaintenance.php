@@ -14,11 +14,15 @@ class CheckMaintenance
      * @param  Closure(Request): (Response)  $next
      */
     public function handle(Request $request, Closure $next): Response
-        { if (env("APP_ENV")=="production") {
+    {
+        // Check if there's an active maintenance record in database
+        $maintenance = \App\Models\Maintenance::where('status', 'active')->first();
+        
+        if ($maintenance) {
             return redirect("/maintenance");
-            
         }
+        
         return $next($request);
-}
+    }
 
 }

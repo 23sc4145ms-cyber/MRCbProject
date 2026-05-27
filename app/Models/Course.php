@@ -9,7 +9,6 @@ class Course extends Model
     protected $fillable = [
         'code',
         'name',
-        'description',
         'units',
     ];
     

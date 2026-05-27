@@ -41,14 +41,12 @@ class CourseController extends Controller
         $validated = $request->validate([
             'code' => ['required', 'string', 'max:20', 'unique:courses,code'],
             'name' => ['required', 'string', 'max:255'],
-            'description' => ['nullable', 'string', 'max:255'],
             'units' => ['required', 'integer', 'min:1', 'max:6'],
         ]);
 
         Course::create([
             'code' => $validated['code'],
             'name' => $validated['name'],
-            'description' => $validated['description'] ?? null,
             'units' => $validated['units'],
         ]);
 
@@ -91,16 +89,16 @@ class CourseController extends Controller
         $validated = $request->validate([
             'code' => ['required', 'string', 'max:20', Rule::unique('courses', 'code')->ignore($course->id)],
             'name' => ['required', 'string', 'max:255'],
-            'description' => ['nullable', 'string', 'max:255'],
             'units' => ['required', 'integer', 'min:1', 'max:6'],
         ]);
 
-        $course->update([
+        $updates = [
             'code' => $validated['code'],
             'name' => $validated['name'],
-            'description' => $validated['description'] ?? null,
             'units' => $validated['units'],
-        ]);
+        ];
+
+        $course->update($updates);
 
         // Check if AJAX request
         if (request()->ajax()) {

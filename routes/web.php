@@ -49,10 +49,11 @@ Route::middleware(['session.check', 'prevent.back'])->group(function () {
             // Get statistics
             $studentCount = \App\Models\Student::count();
             $teacherCount = \App\Models\Teacher::count();
+            $degreeCount = \App\Models\Degree::count();
             $courseCount = \App\Models\Course::count();
             
             if ($role === 'admin') {
-                return view('dashboards.admin', compact('studentCount', 'teacherCount', 'courseCount'));
+                return view('dashboards.admin', compact('studentCount', 'teacherCount', 'degreeCount', 'courseCount'));
             } elseif ($role === 'teacher') {
                 return view('dashboards.teacher');
             } elseif ($role === 'student') {

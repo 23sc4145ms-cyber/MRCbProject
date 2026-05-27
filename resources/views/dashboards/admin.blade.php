@@ -46,15 +46,28 @@
                 </div>
             </div>
 
-            <!-- Total Courses -->
+            <!-- Total Degrees -->
             <div style="background: linear-gradient(135deg, #677C56 0%, #556647 100%); border-radius: 12px; padding: 2rem; box-shadow: 0 4px 6px rgba(103, 124, 86, 0.3); color: white;">
                 <div style="display: flex; justify-content: space-between; align-items: center;">
                     <div>
-                        <p style="margin: 0; font-size: 0.9rem; opacity: 0.9;">Total Degree</p>
-                        <h2 style="margin: 0.5rem 0 0 0; font-size: 3rem; font-weight: 700;">{{ $courseCount }}</h2>
+                        <p style="margin: 0; font-size: 0.9rem; opacity: 0.9;">Total Degrees</p>
+                        <h2 style="margin: 0.5rem 0 0 0; font-size: 3rem; font-weight: 700;">{{ $degreeCount }}</h2>
                     </div>
                     <div style="width: 70px; height: 70px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem;">
                         📚
+                    </div>
+                </div>
+            </div>
+
+            <!-- Total Courses -->
+            <div style="background: linear-gradient(135deg, #ABC28B 0%, #677C56 100%); border-radius: 12px; padding: 2rem; box-shadow: 0 4px 6px rgba(171, 194, 139, 0.25); color: white;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <p style="margin: 0; font-size: 0.9rem; opacity: 0.9;">Total Courses</p>
+                        <h2 style="margin: 0.5rem 0 0 0; font-size: 3rem; font-weight: 700;">{{ $courseCount }}</h2>
+                    </div>
+                    <div style="width: 70px; height: 70px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem;">
+                        🧾
                     </div>
                 </div>
             </div>
